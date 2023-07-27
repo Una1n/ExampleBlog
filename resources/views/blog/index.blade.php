@@ -17,13 +17,12 @@
                                     class="dark:text-violet-300">{{ $article->title }}</a>
                             </h3>
                             <p class="prose max-w-full dark:text-gray-100">{{ $article->short_text }}</p>
+
                             <div class="flex flex-wrap space-x-3">
                                 <a rel="noopener noreferrer" href="#"
-                                    class="text-xs dark:text-violet-400">#angular</a>
-                                <a rel="noopener noreferrer" href="#"
-                                    class="text-xs dark:text-violet-400">#tailwind</a>
-                                <a rel="noopener noreferrer" href="#"
-                                    class="text-xs dark:text-violet-400">#webdev</a>
+                                    class="text-sm font-semibold uppercase dark:text-violet-400">
+                                    {{ $article->category->name }}
+                                </a>
                             </div>
                         </div>
                     </article>

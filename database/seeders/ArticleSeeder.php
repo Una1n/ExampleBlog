@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class ArticleSeeder extends Seeder
@@ -12,6 +13,10 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        Article::factory(5)->create();
+        $categories = Category::all();
+
+        Article::factory(5)->create([
+            'category_id' => $categories->random()->id,
+        ]);
     }
 }

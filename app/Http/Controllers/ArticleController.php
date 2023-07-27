@@ -10,7 +10,7 @@ class ArticleController extends Controller
     public function index(): View
     {
         return view('blog.index', [
-            'articles' => Article::latest()->simplePaginate(10),
+            'articles' => Article::with('category')->latest()->simplePaginate(10),
         ]);
     }
 
