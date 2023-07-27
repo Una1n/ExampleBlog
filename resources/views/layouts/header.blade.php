@@ -4,7 +4,9 @@
         <div class="hidden space-x-2 font-medium sm:block">
             <a rel="noopener noreferrer" href="/" class="p-1">Blog</a>
             <a rel="noopener noreferrer" href="/" class="p-1">About</a>
-            <a rel="noopener noreferrer" href="/" class="p-1">Login</a>
+            @if (!auth()->user())
+                <a rel="noopener noreferrer" href="{{ route('login') }}" class="p-1">Login</a>
+            @endif
         </div>
         <div class="sm:hidden">
             <button type="button" aria-label="Toggle Menu" class="ml-1 mr-1 h-8 w-8 rounded">
@@ -28,7 +30,7 @@
                             class="tracki text-2xl font-bold dark:dark:text-gray-900">About</a>
                     </div>
                     <div class="px-12 py-4">
-                        <a rel="noopener noreferrer" href="/"
+                        <a rel="noopener noreferrer" href="{{ route('login') }}"
                             class="tracki text-2xl font-bold dark:dark:text-gray-900">Login</a>
                     </div>
                 </nav>
