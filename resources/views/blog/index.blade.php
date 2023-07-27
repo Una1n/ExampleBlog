@@ -1,6 +1,6 @@
 <x-main-layout>
     <div class="space-y-6">
-        <h2 class="text-3xl font-extrabold dark:text-gray-50">Recent blog posts</h2>
+        <h2 class="text-3xl font-extrabold dark:text-gray-50">Blog Posts</h2>
         <ul class="space-y-8 xl:space-y-10">
             @forelse($articles as $article)
                 <li>
@@ -19,8 +19,8 @@
                             <p class="prose max-w-full dark:text-gray-100">{{ $article->short_text }}</p>
 
                             <div class="flex flex-wrap space-x-3">
-                                <a rel="noopener noreferrer" href="#"
-                                    class="text-sm font-semibold uppercase dark:text-violet-400">
+                                <a rel="noopener noreferrer" href="{{ route('category.show', $article->category) }}"
+                                    class="rounded-sm bg-violet-400 px-3 pb-1 text-gray-900 hover:underline">
                                     {{ $article->category->name }}
                                 </a>
                             </div>
