@@ -1,7 +1,7 @@
 <x-main-layout>
     <article class="space-y-8 bg-gray-800 text-gray-50">
         <div class="space-y-6">
-            <h1 class="md:tracki text-4xl font-bold md:text-5xl">Suspendisse ut magna et ipsum sodales accumsan.</h1>
+            <h1 class="md:tracki text-4xl font-bold md:text-5xl">{{ $article->title }}</h1>
             <div class="flex w-full flex-col items-start justify-between text-gray-400 md:flex-row md:items-center">
                 <div class="flex items-center md:space-x-2">
                     <img src="https://source.unsplash.com/75x75/?portrait" alt=""
