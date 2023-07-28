@@ -18,7 +18,7 @@ class TagController extends Controller
 
     public function show(Tag $tag): View
     {
-        return view('blog.index', [
+        return view('article.index', [
             'articles' => $tag->articles()->latest()->simplePaginate(10),
         ]);
     }

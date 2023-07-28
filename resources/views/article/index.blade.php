@@ -13,7 +13,7 @@
                         </dl>
                         <div class="space-y-1">
                             <h3 class="tracki text-2xl font-bold">
-                                <a rel="noopener noreferrer" href="{{ route('blog.show', $article) }}"
+                                <a rel="noopener noreferrer" href="{{ route('article.show', $article) }}"
                                     class="dark:text-violet-300">{{ $article->title }}</a>
                             </h3>
                             <p class="prose max-w-full dark:text-gray-100">{{ $article->short_text }}</p>

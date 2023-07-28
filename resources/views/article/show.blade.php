@@ -1,6 +1,6 @@
 <x-main-layout>
-    <article class="space-y-8 bg-gray-800 text-gray-50">
-        <div class="space-y-6">
+    <article class="space-y-4 bg-gray-800 text-gray-50">
+        <div class="space-y-4">
             <div class="text-sm font-semibold uppercase dark:text-violet-400">
                 <a href="#">{{ $article->category->name }}</a>
             </div>
@@ -15,6 +15,21 @@
                     {{ str()->readDuration($article->text) }} min read • 1,570 views
                 </p>
             </div>
+            @if (auth()->user())
+                <div class="flex gap-5">
+                    <a class="block w-fit rounded-lg bg-violet-400 px-2 hover:bg-violet-800"
+                        href="{{ route('article.edit', $article) }}">Edit</a>
+                    <form method="POST" action="{{ route('article.destroy', $article) }}"
+                        onsubmit="return confirm('Do you want to delete this article?');">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit"
+                            class="rounded-lg bg-red-500 px-2 font-medium text-red-200 hover:bg-red-800">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            @endif
         </div>
         <div class="whitespace-pre-wrap text-gray-100">
             <p>{{ $article->text }}</p>

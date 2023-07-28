@@ -2,10 +2,13 @@
     <a rel="noopener noreferrer" href="/" class="block h-6 text-2xl font-semibold">Name of Blog</a>
     <div class="flex items-center">
         <div class="hidden space-x-2 font-medium sm:block">
-            <a rel="noopener noreferrer" href="/" class="p-1">Blog</a>
-            <a rel="noopener noreferrer" href="/" class="p-1">About</a>
+            <a rel="noopener noreferrer" href="{{ route('about') }}" class="p-1">About</a>
             @if (!auth()->user())
                 <a rel="noopener noreferrer" href="{{ route('login') }}" class="p-1">Login</a>
+            @else
+                <a rel="noopener noreferrer" href="{{ route('article.create') }}" class="p-1">Create Article</a>
+                <a rel="noopener noreferrer" href="{{ route('category.index') }}" class="p-1">Categories</a>
+                <a rel="noopener noreferrer" href="{{ route('tag.index') }}" class="p-1">Tags</a>
             @endif
         </div>
         <div class="sm:hidden">

@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function show(Category $category): View
     {
-        return view('blog.index', [
+        return view('article.index', [
             'articles' => $category->articles()->latest()->simplePaginate(10),
         ]);
     }

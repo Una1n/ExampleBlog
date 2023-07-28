@@ -16,21 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Admin Routes
+Route::middleware('auth')->group(function () {
+    Route::resource('category', CategoryController::class)->except('show');
+    Route::resource('tag', TagController::class)->except('show');
+    Route::resource('article', ArticleController::class)->except(['index', 'show']);
+});
 
-Route::controller(ArticleController::class)->as('blog.')->group(function () {
+// Public Routes
+Route::controller(ArticleController::class)->as('article.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/article/{article}', 'show')->name('show');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::resource('category', CategoryController::class)->except('show');
-    Route::resource('tag', TagController::class)->except('show');
-});
+Route::get('/category/{category}/articles', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/tag/{tag}/articles', [TagController::class, 'show'])->name('tag.show');
 
-Route::get('category/{category}/articles', [CategoryController::class, 'show'])->name('category.show');
-Route::get('tag/{tag}/articles', [TagController::class, 'show'])->name('tag.show');
+Route::view('/about', 'about')->name('about');
 
 require __DIR__ . '/auth.php';
