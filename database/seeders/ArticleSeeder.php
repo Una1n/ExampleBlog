@@ -15,8 +15,10 @@ class ArticleSeeder extends Seeder
     {
         $categories = Category::all();
 
-        Article::factory(5)->create([
-            'category_id' => $categories->random()->id,
-        ]);
+        for ($i = 0; $i < 20; $i++) {
+            Article::factory()->create([
+                'category_id' => $categories->random()->id,
+            ]);
+        }
     }
 }
