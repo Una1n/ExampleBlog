@@ -22,12 +22,10 @@
     </article>
     <div>
         <div class="flex flex-wrap space-x-2 border-t border-dashed border-gray-400 py-6">
-            <a rel="noopener noreferrer" href="#"
-                class="rounded-sm bg-violet-400 px-3 py-1 text-gray-900 hover:underline">#Tag1</a>
-            <a rel="noopener noreferrer" href="#"
-                class="rounded-sm bg-violet-400 px-3 py-1 text-gray-900 hover:underline">#Tag2</a>
-            <a rel="noopener noreferrer" href="#"
-                class="rounded-sm bg-violet-400 px-3 py-1 text-gray-900 hover:underline">#Tag3</a>
+            @foreach ($article->tags as $tag)
+                <a rel="noopener noreferrer" href="{{ route('tag.show', $tag) }}"
+                    class="rounded-sm bg-violet-400 px-3 py-1 text-gray-900 hover:underline">#{{ $tag->name }}</a>
+            @endforeach
         </div>
     </div>
 </x-main-layout>
