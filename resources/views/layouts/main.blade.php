@@ -13,7 +13,7 @@
 </head>
 
 <body class="text-gray-900 antialiased">
-    <div class="antialiased dark:dark:bg-gray-800 dark:dark:text-gray-100">
+    <div class="antialiased dark:bg-gray-800 dark:text-gray-100">
         <div class="flex min-h-screen flex-col space-y-12">
             @include('layouts.header')
             <main class="container mx-auto max-w-3xl flex-1 space-y-12 px-6 xl:max-w-5xl">
