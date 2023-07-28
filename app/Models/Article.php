@@ -15,6 +15,7 @@ class Article extends Model
     protected $fillable = [
         'title',
         'text',
+        'category_id',
     ];
 
     protected static function booted(): void
