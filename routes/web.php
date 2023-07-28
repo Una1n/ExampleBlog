@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    //
-});
-
 Route::controller(ArticleController::class)->as('blog.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/article/{article}', 'show')->name('show');
@@ -30,8 +27,10 @@ Route::controller(ArticleController::class)->as('blog.')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('category', CategoryController::class)->except('show');
+    Route::resource('tag', TagController::class)->except('show');
 });
 
 Route::get('category/{category}/articles', [CategoryController::class, 'show'])->name('category.show');
+Route::get('tag/{tag}/articles', [TagController::class, 'show'])->name('tag.show');
 
 require __DIR__ . '/auth.php';
