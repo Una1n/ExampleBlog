@@ -28,8 +28,10 @@ Route::controller(ArticleController::class)->as('blog.')->group(function () {
     Route::get('/article/{article}', 'show')->name('show');
 });
 
-Route::controller(CategoryController::class)->as('category.')->group(function () {
-    Route::get('category/{category}/articles', 'show')->name('show');
+Route::middleware('auth')->group(function () {
+    Route::resource('category', CategoryController::class)->except('show');
 });
+
+Route::get('category/{category}/articles', [CategoryController::class, 'show'])->name('category.show');
 
 require __DIR__ . '/auth.php';
