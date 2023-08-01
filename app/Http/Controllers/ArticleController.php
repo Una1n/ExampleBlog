@@ -33,35 +33,50 @@ class ArticleController extends Controller
 
     public function store(StoreArticleRequest $request): RedirectResponse
     {
-        if ($request->has('tags')) {
-            $tags = $request->get('tags');
-            dd($tags);
-
-            foreach ($tags as $tag) {
-
-            }
-        }
-
         $article = Article::create($request->validated());
-        // $article->tags()->attach($tags);
+
+        if ($request->has('tags')) {
+            $tags = [];
+            foreach ($request->get('tags') as $requestTag) {
+                if (Tag::whereId($requestTag)->exists()) {
+                    $tags[] = $requestTag;
+                }
+            }
+            $article->tags()->attach($tags);
+        }
 
         return redirect()->route('article.show', $article);
     }
 
     public function edit(Article $article): View
     {
-        return view('article.edit', compact('article'));
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('article.edit', compact('article', 'categories', 'tags'));
     }
 
     public function update(StoreArticleRequest $request, Article $article): RedirectResponse
     {
         $article->update($request->validated());
 
+        $tags = [];
+        if ($request->has('tags')) {
+            foreach ($request->get('tags') as $requestTag) {
+                if (Tag::whereId($requestTag)->exists()) {
+                    $tags[] = $requestTag;
+                }
+            }
+        }
+
+        $article->tags()->sync($tags);
+
         return redirect()->route('article.show', $article);
     }
 
     public function destroy(Article $article): RedirectResponse
     {
+        $article->tags()->detach();
         $article->delete();
 
         return redirect()->route('article.index');
