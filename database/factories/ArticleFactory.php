@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class ArticleFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'text' => fake()->paragraphs(6, true),
+            'category_id' => Category::factory(),
         ];
     }
 }
