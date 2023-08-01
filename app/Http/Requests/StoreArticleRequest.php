@@ -18,13 +18,13 @@ class StoreArticleRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, array<mixed>>
      */
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
-            'text' => ['required', 'string'],
+            'title' => ['required', 'string', 'min:8', 'max:255'],
+            'text' => ['required', 'string', 'min:50'],
             'category_id' => ['required', Rule::exists('categories', 'id')],
         ];
     }
