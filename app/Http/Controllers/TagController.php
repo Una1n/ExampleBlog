@@ -18,8 +18,12 @@ class TagController extends Controller
 
     public function show(Tag $tag): View
     {
+        $articles = $tag->articles()->with('category')
+            ->latest()
+            ->simplePaginate(10);
+
         return view('article.index', [
-            'articles' => $tag->articles()->latest()->simplePaginate(10),
+            'articles' => $articles,
         ]);
     }
 

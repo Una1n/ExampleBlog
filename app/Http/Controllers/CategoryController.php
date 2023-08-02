@@ -18,8 +18,11 @@ class CategoryController extends Controller
 
     public function show(Category $category): View
     {
+        $articles = $category->articles()->latest()->simplePaginate(10);
+        collect($articles->items())->each->setRelation('category', $category);
+
         return view('article.index', [
-            'articles' => $category->articles()->latest()->simplePaginate(10),
+            'articles' => $articles,
         ]);
     }
 
