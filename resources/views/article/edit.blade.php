@@ -53,7 +53,9 @@
             </div>
         </div>
         <button type="submit"
-            class="w-full rounded-lg bg-violet-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-violet-800 focus:outline-none focus:ring-4 focus:ring-violet-300 dark:bg-violet-400 dark:hover:bg-violet-700 dark:focus:ring-violet-800 sm:w-auto">Save</button>
+            class="w-full rounded-lg bg-violet-400 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-violet-800 focus:outline-none focus:ring-4 focus:ring-violet-300 dark:bg-violet-400 dark:hover:bg-violet-700 dark:focus:ring-violet-800 sm:w-auto">
+            Save
+        </button>
     </form>
 
 </x-main-layout>
