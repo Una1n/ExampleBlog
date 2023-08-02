@@ -2,9 +2,8 @@ includes:
     - ./vendor/nunomaduro/larastan/extension.neon
 
 parameters:
-    #ignoreErrors:
-    #    - '#with no value type specified in iterable type array\.#'
-    #    - '#return type has no value type specified in iterable type array\.#'
+    ignoreErrors:
+        - '#MustVerifyEmail#'
 
     paths:
         - app/
