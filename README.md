@@ -62,3 +62,29 @@ Here's the list of Roadmap features you need to try to implement in your code:
 - Forms, Validation and Form Requests
 - File Uploads and Storage Folder Basics
 - Table Pagination
+
+- - - - -
+
+## How to use without Docker/WSL
+
+- Clone the repository with `git clone`
+- Copy `.env.example` file to `.env` and edit database credentials there
+- Run `composer install`
+- Run `php artisan key:generate`
+- Run `php artisan migrate --seed` (it has some seeded data for your testing)
+- Run `npm install`
+- Run `npm run build` or `npm run dev`
+- Launch `http://localhost:8000` in your browser
+- You can register as regular user or login as admin to manage data with default credentials `admin@admin.com` - `password`
+
+## How to use with Docker+WSL
+
+- Clone the repository with `git clone` in a WSL directory
+- Copy `.env.example` file to `.env`
+- Run `./dock composer install`
+- Run `./dock npm install`
+- Run `./dock artisan key:generate`
+- Run `./dock artisan migrate --seed` (it has some seeded data for your testing)
+- Run `./dock start`
+- Launch `http://localhost:8000` in your browser
+- You can register as regular user or login as admin to manage data with default credentials `admin@admin.com` - `password`
