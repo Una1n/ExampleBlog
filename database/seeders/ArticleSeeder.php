@@ -17,14 +17,12 @@ class ArticleSeeder extends Seeder
         $categories = Category::all();
         $tags = Tag::all();
 
-        for ($i = 0; $i < 20; $i++) {
-            $article = Article::factory()
-                ->create([
-                    'category_id' => $categories->random()->id,
-                ]);
+        $articles = Article::factory(20)
+            ->recycle($categories)
+            ->create();
 
-            $foundTags = $tags->random(2);
-            $article->tags()->attach($foundTags);
-        }
+        $articles->each(function ($article) use ($tags) {
+            $article->tags()->attach($tags->random(2));
+        });
     }
 }
