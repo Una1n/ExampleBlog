@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+
 use function Pest\Laravel\delete;
 use function Pest\Laravel\followingRedirects;
 use function Pest\Laravel\get;
@@ -15,8 +16,9 @@ it('can show a list of categories', function () {
     $categories = Category::factory(3)->create();
 
     get(route('category.index'))
-        ->assertSee($categories[0]->name)
-        ->assertSee($categories[2]->name)
+        ->assertSee([
+            ...$categories->pluck('name')->toArray(),
+        ])
         ->assertOk();
 });
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Tag;
+
 use function Pest\Laravel\delete;
 use function Pest\Laravel\followingRedirects;
 use function Pest\Laravel\get;
@@ -15,8 +16,9 @@ it('can show a list of tags', function () {
     $tags = Tag::factory(3)->create();
 
     get(route('tag.index'))
-        ->assertSee($tags[0]->name)
-        ->assertSee($tags[2]->name)
+        ->assertSee([
+            ...$tags->pluck('name')->toArray(),
+        ])
         ->assertOk();
 });
 

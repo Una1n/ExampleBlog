@@ -3,6 +3,7 @@
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
+
 use function Pest\Laravel\delete;
 use function Pest\Laravel\followingRedirects;
 use function Pest\Laravel\get;
@@ -13,10 +14,10 @@ it('can show a list of articles', function () {
     $articles = Article::factory(10)->create();
 
     get(route('article.index'))
-        ->assertSee($articles[0]->title)
-        ->assertSee($articles[0]->short_text)
-        ->assertSee($articles[7]->title)
-        ->assertSee($articles[7]->short_text)
+        ->assertSee([
+            ...$articles->pluck('title')->toArray(),
+            ...$articles->pluck('short_text')->toArray(),
+        ])
         ->assertOk();
 });
 
